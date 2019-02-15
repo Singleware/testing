@@ -1,0 +1,54 @@
+{
+  "author": {
+    "name": "Silas B. Domingos",
+    "email": "hello@balmante.eti.br",
+    "url": "https://balmante.eti.br"
+  },
+  "name": "@singleware/testing",
+  "description": "Singleware testing package.",
+  "license": "MIT",
+  "version": "1.0.0",
+  "main": "release/source/index.js",
+  "types": "release/types/index.d.ts",
+  "keywords": [
+    "TDD",
+    "testing",
+    "test",
+    "automated test",
+    "test automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/singleware/testing"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@singleware/class": "^1.1.19"
+  },
+  "devDependencies": {
+    "@types/node": "^11.9.4",
+    "prettier": "^1.16.4",
+    "typescript": "^3.3.3"
+  },
+  "prettier": {
+    "printWidth": 140,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "semi": true
+  },
+  "scripts": {
+    "prepublishOnly": "npm test",
+    "test": "node ./release/tests/suite.js",
+    "build": "npm run make-source && npm run make-tests && npm run make-examples",
+    "make-source": "npx tsc -p ./source && npm run update",
+    "make-examples": "npx tsc -p ./examples",
+    "make-tests": "npx tsc -p ./tests",
+    "update": "npm run update-root && npm run update-data && npm run update-report && npm run update-decorators",
+    "update-root": "cp -Rf ./source/*.d.ts ./release/types",
+    "update-data": "cp -Rf ./source/data/*.d.ts ./release/types/data",
+    "update-report": "cp -Rf ./source/report/*.d.ts ./release/types/report",
+    "update-decorators": "cp -Rf ./source/decorators/*.d.ts ./release/types/decorators"
+  }
+}
