@@ -60,8 +60,10 @@ export class Suite extends Class.Null {
       errors: 0,
       cases: {}
     };
-    for (const test of this.caseList) {
-      suiteReport.cases[test.name] = currentCase = <Report.Case>{
+    for (let i = 0; i < this.caseList.length; ++i) {
+      const test = this.caseList[i];
+      const name = `${i}@${test.name}`;
+      suiteReport.cases[name] = currentCase = <Report.Case>{
         total: 0,
         methods: {}
       };
